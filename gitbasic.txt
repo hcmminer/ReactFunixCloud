@@ -1,0 +1,17 @@
+git branch -m lab01_3
+
+gid remote add origin https://github.com/hcmminer/ReactFunixCloud.git
+
+git push -u origin lab01_3
+
+// ban khong the xoa nhanh hien tai vi vay hay chuyen sang nhanh khac voi nhanh hien tai can xoa
+git checkout localBranchName
+
+git push -u origin --delete lab01_3
+
+git branch -d localBranchName // -D xoa ngay ca khi chua push len cloud
+
+Cố gắng đồng bộ hóa danh sách chi nhánh của bạn bằng cách sử dụng:
+
+git fetch -p
+Lá -pcờ có nghĩa là "tỉa". Sau khi tìm nạp, các nhánh không còn tồn tại trên điều khiển từ xa sẽ bị xóa.
