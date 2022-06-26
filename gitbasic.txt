@@ -1,6 +1,12 @@
 git branch -m lab01_3
 
+git branch
+
+git branch --show-current
+
 gid remote add origin https://github.com/hcmminer/ReactFunixCloud.git
+
+git remote -v 
 
 git push -u origin lab01_3
 
