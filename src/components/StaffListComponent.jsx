@@ -12,7 +12,7 @@ const StaffListComponent = () => {
   const RenderStaff = function () {
     if (currentStaff != null) {
       return (
-        <div className=" p-4 mt-4 border rounded-md bg-gradient-to-br from-purple-600 border-t-violet-400 hover:from-slate-200 hover:to-slate-700 hover:text-center hover:text-lg ">
+        <div className="transform hover:scale-110 p-4 mt-4 border rounded-md bg-gradient-to-br from-purple-300 text-gray-900 hover:text-red-600 text-center">
           <h1 className="text-lg font-bold">
             Họ và tên: <span className="capitalize">{currentStaff.name}</span>
           </h1>
@@ -29,14 +29,14 @@ const StaffListComponent = () => {
       );
     }
   };
-  const resString = `grid grid-cols-1 sm:grid-cols-${screen.sm} md:grid-cols-${screen.md}`;
+  const resString = `grid gap-2 grid-cols-1 sm:grid-cols-${screen.sm} md:grid-cols-${screen.md}`;
   console.log(resString);
   const StaffList = function () {
     return (
       <div className={resString}>
         {STAFFS.map((item, key) => (
           <div
-            className="hover:origin-bottom hover:-rotate-3 border rounded-md bg-zinc-500 capitalize p-2 cursor-pointer hover:bg-emerald-400 delay-75"
+            className="border border-purple-600 rounded-md bg-zinc-500 capitalize p-2 cursor-pointer hover:bg-green-400 shadow-lg hover:text-white transform  hover:-skew-x-12"
             key={key}
             onClick={() => setCurrentStaff(item)}
           >
@@ -49,16 +49,15 @@ const StaffListComponent = () => {
 
   return (
     <div className=" bg-cyan-50">
-      <h1 className=" bg-gradient-to-r from-blue-800 to-lime-400 p-4 px-4 text-white text-lg animate-pulse">
-        Ứng dụng quản lý nhân sự v1.9
+      <h1 className=" bg-gradient-to-tr from-green-700 to-lime-400 p-4 px-4 text-yellow-50 text-center text-xl animate-pulse  hover:bg-red-600">
+        Ứng dụng quản lý nhân sự v1.0
       </h1>
-      <div className="p-4 text-rose-700 justify-center flex flex-row items-center">
+      <div className="p-1 text-rose-700 justify-center flex flex-row items-center">
         <label
-          className="cursor-pointer flex flex-row items-center"
+          className="cursor-pointer flex flex-row items-center text-pink-400"
           htmlFor="setcol"
         >
-          <span className="text-4xl pr-4">&#9881;</span>
-          <span>Tùy chỉnh số cột:</span>
+          <span className="text-xl animate-spin -mr-2 mt-4">&#9881;</span>
         </label>
         <input
           onChange={(e) =>
@@ -71,14 +70,20 @@ const StaffListComponent = () => {
           }
           type="number"
           id="setcol"
-          placeholder="number?"
-          className="text-center w-20 bg-zinc-700 text-red rounded-lg ml-4"
+          placeholder="1...12"
+          className=" animate-bounce text-center border-2 border-red-500 rounded-full text-red-600  w-20 placeholder-gray-600"
         />
+        <label
+          className="cursor-pointer flex flex-row items-center text-pink-400"
+          htmlFor="setcol"
+        >
+          <span className="text-xl animate-spin -ml-2 mt-4">&#9881;</span>
+        </label>
       </div>
-      <div className="p-4">
+      <div className="m-1 mx-4">
         <StaffList />
         {!currentStaff && (
-          <div className="pt-4 text-pink-500">
+          <div className="pt-4 text-pink-500 italic text-lg">
             Bấm vào tên nhân viên để xem thông tin
           </div>
         )}

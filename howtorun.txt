@@ -1,7 +1,0 @@
-   github:
-    https://github.com/hcmminer/ReactFunixCloud
-    branch RJS101x_Assignment1_bandvfx17188@funix.edu.vn
-    Cách chạy sau khi clone:
-        cd assignment1
-        yarn
-        yarn dev
