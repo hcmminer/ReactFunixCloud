@@ -1,16 +1,8 @@
 import React, { Component } from "react";
 import { Card, CardImg, CardBody, CardTitle, CardText } from "reactstrap";
-import { DISHES } from "../shared/dishes";
 
 // Adding DishDetail component
 class DishDetail extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      dishes: DISHES,
-    };
-  }
-
   renderDish(dish) {
     if (dish != null) {
       return (
