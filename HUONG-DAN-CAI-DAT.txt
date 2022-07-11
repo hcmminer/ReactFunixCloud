@@ -2,7 +2,7 @@
     https://github.com/hcmminer/ReactFunixCloud
     branch RJS101x_Assignment1_bandvfx17188@funix.edu.vn
     Cách chạy:
-        git clone -b RJS101x_Assignment1_bandvfx17188@funix.edu.vn https://github.com/hcmminer/ReactFunixCloud
+        git clone -b RJS101x_Assignment2_bandvfx17188@funix.edu.vn https://github.com/hcmminer/ReactFunixCloud
         cd ReactFunixCloud
         npm install
         npm run dev
