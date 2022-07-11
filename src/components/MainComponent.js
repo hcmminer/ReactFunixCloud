@@ -5,7 +5,7 @@ import { DISHES } from "../shared/dishes";
 import Home from "./HomeComponent";
 import Header from "./HeaderComponent";
 import Footer from "./FooterComponent";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useParams } from "react-router-dom";
 import Contact from "./ContactComponent";
 import { COMMENTS } from "../shared/comments";
 import { PROMOTIONS } from "../shared/promotions";
@@ -27,6 +27,21 @@ class Main extends Component {
   };
 
   render() {
+    const DishWithId = () => {
+      const { dishId } = useParams();
+      return (
+        <DishDetail
+          dish={
+            this.state.dishes.filter(
+              (dish) => dish.id === parseInt(dishId, 10)
+            )[0]
+          }
+          comments={this.state.comments.filter(
+            (comment) => comment.dishId === parseInt(dishId, 10)
+          )}
+        />
+      );
+    };
     return (
       <div>
         <Header />
@@ -55,6 +70,8 @@ class Main extends Component {
               />
             }
           ></Route>
+          <Route path="/menu/:dishId" element={<DishWithId />} />
+
           <Route path="/contactus" element={<Contact />} />
           <Route
             path="/"
