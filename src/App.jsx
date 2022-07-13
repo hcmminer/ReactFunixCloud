@@ -7,6 +7,7 @@ import DepartmentsComponent from "./components/DepartmentsComponent";
 import SalariesComponent from "./components/SalariesComponent";
 import "./App.css";
 import { STAFFS } from "./staffs";
+import { useEffect } from "react";
 export default function App() {
     const [screen, setScreen] = useState({
         sm: 3,
@@ -15,24 +16,25 @@ export default function App() {
 
     const [staffs, setStaffs] = useState(STAFFS);
 
-    const changeScreen = (a) => {
-        setScreen({
-            ...screen,
-            sm: a,
-            md: a,
-        });
+    const changeStaffs = (e) => {
+        setStaffs(staffs.filter((item) => item.name.includes(e)));
     };
+
+    // useEffect((e) => changeStaffs(e),[staffs]);
 
     return (
         <BrowserRouter>
             <HeaderComponent
                 screen={screen}
-                setScreen={(a) => changeScreen(a)}
+                setScreen={(a) => setScreen({ ...screen, sm: a, md: a })}
+                setStaffs={(e) => changeStaffs(e)}
             />
             <Routes>
                 <Route
                     path="staffs"
-                    element={<StaffListComponent screen={screen} />}
+                    element={
+                        <StaffListComponent screen={screen} staffs={staffs} />
+                    }
                 ></Route>
                 <Route
                     path="staffs/:staffId"

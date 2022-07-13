@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import SearchBarComponent from "./SearchBarComponent";
 
-const HeaderComponent = ({ setScreen }) => {
+const HeaderComponent = ({ setScreen, setStaffs }) => {
     const location = useLocation();
     const activeLink = location.pathname;
     return (
@@ -14,7 +14,7 @@ const HeaderComponent = ({ setScreen }) => {
                     <h1 className="bg-gray-900 rounded-md border-2 text-white p-2 transform -skew-x-12 text-center text-xl">
                         Ứng dụng quản lý nhân sự v1.0
                     </h1>
-                    <SearchBarComponent />
+                    <SearchBarComponent setStaffs={(e) => setStaffs(e)} />
                 </div>
                 <hr className="m-4 border-t-2"></hr>
                 <div className="m-1 mx-4 ">

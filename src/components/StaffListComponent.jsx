@@ -1,8 +1,7 @@
-import { STAFFS } from "../staffs";
 import React from "react";
 import { Link } from "react-router-dom";
 
-const StaffListComponent = ({ screen }) => {
+const StaffListComponent = ({ screen, staffs }) => {
     const resString = `grid gap-4 grid-cols-2 sm:grid-cols-${screen.sm} md:grid-cols-${screen.md}`;
 
     return (
@@ -21,7 +20,7 @@ const StaffListComponent = ({ screen }) => {
             </nav>
             <div className=" mx-6">
                 <div className={resString}>
-                    {STAFFS.map((item, key) => (
+                    {staffs.map((item, key) => (
                         <div
                             className="capitalize cursor-pointer hover:bg-green-400 shadow-lg hover:text-white transform  hover:-skew-x-12 hover:z-40 hover:scale-110"
                             key={key}

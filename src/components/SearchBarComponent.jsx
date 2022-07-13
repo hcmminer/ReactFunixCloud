@@ -1,4 +1,4 @@
-const SearchBarComponent = () => {
+const SearchBarComponent = ({ setStaffs }) => {
     return (
         <div className="flex">
             <form method="GET">
@@ -9,6 +9,9 @@ const SearchBarComponent = () => {
                         className="py-2 text-sm text-white bg-gray-900 rounded-md pl-10 focus:outline-none focus:bg-white focus:text-black"
                         placeholder="Search..."
                         autoComplete="off"
+                        onChange={(e) => {
+                            setStaffs(e.target.value);
+                        }}
                     />
                     <span className="absolute inset-y-0 left-0 flex items-center pl-2">
                         <button type="submit" className="p-1">
