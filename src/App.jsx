@@ -1,14 +1,19 @@
 import HeaderComponent from "./components/HeaderComponent";
 import StaffListComponent from "./components/StaffListComponent";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 import CurrentStaffComponent from "./components/CurrentStaffComponent";
-
+import DepartmentsComponent from "./components/DepartmentsComponent";
+import SalariesComponent from "./components/SalariesComponent";
+import "./App.css";
+import { STAFFS } from "./staffs";
 export default function App() {
     const [screen, setScreen] = useState({
         sm: 3,
         md: 6,
     });
+
+    const [staffs, setStaffs] = useState(STAFFS);
 
     const changeScreen = (a) => {
         setScreen({
@@ -32,6 +37,15 @@ export default function App() {
                 <Route
                     path="staffs/:staffId"
                     element={<CurrentStaffComponent />}
+                ></Route>
+                <Route
+                    path="departments"
+                    element={<DepartmentsComponent />}
+                ></Route>
+                <Route path="salaries" element={<SalariesComponent />}></Route>
+                <Route
+                    path="/"
+                    element={<Navigate to="/staffs" replace={true} />}
                 ></Route>
             </Routes>
         </BrowserRouter>
