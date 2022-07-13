@@ -17,7 +17,7 @@ export default function App() {
     const [staffs, setStaffs] = useState(STAFFS);
 
     const changeStaffs = (e) => {
-        setStaffs(staffs.filter((item) => item.name.includes(e)));
+        setStaffs(STAFFS.filter((item) => item.name.includes(e)));
     };
 
     // useEffect((e) => changeStaffs(e),[staffs]);
