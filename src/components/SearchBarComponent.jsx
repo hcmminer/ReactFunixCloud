@@ -1,6 +1,6 @@
 const SearchBarComponent = ({ setStaffs }) => {
     return (
-        <div className="flex">
+        <div className="hidden sm:flex">
             <form method="GET">
                 <div className="relative text-gray-600">
                     <input

@@ -13,26 +13,32 @@ export default function App() {
         sm: 3,
         md: 6,
     });
-
-    // search staffs
     const [staffs, setStaffs] = useState(STAFFS);
+    const [sortStaffs, setSortStaffs] = useState(STAFFS);
+    // search staffs
     const changeStaffs = (e) => {
-        setStaffs(STAFFS.filter((item) => item.name.includes(e)));
+        setStaffs(
+            STAFFS.filter((item) =>
+                item.name.toLowerCase().includes(e.toLowerCase())
+            )
+        );
     };
 
-    // sort salaries by (id | salary total)
-    const [sortStaffs, setSortStaffs] = useState(STAFFS);
+    // sort salaries by (id || salary total)
     const calSalary = (item) => {
         let total = item.salaryScale * 3000000 + item.overTime * 200000;
         return total;
     };
+    const cloneSTAFFS = [...STAFFS];
     const sortBy = (e) => {
-        if (e == "id-inc") {
-            console.log(e);
-            setSortStaffs(STAFFS.sort((a, b) => b.id - a.id));
-        } else if (e == "salary-dec") {
-            console.log(e);
-            setSortStaffs(STAFFS.sort((a, b) => calSalary(b) - calSalary(a)));
+        if (e == "idInc") {
+            setSortStaffs(cloneSTAFFS.sort((a, b) => b.id - a.id));
+        } else if (e == "salaryDec") {
+            setSortStaffs(
+                cloneSTAFFS.sort((a, b) => calSalary(b) - calSalary(a))
+            );
+        } else {
+            setSortStaffs(STAFFS);
         }
     };
 
