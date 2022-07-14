@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { STAFFS } from "../staffs";
 const SalaryCard = ({ item }) => {
     const formatterVn = new Intl.NumberFormat("VN", {
         style: "currency",
@@ -26,7 +25,7 @@ const SalaryCard = ({ item }) => {
         </div>
     );
 };
-const SalariesComponent = () => {
+const SalariesComponent = ({ sortStaffs }) => {
     return (
         <div className="mx-6">
             <nav className="bg-gray-100 px-5 py-3 text-lg">
@@ -46,7 +45,7 @@ const SalariesComponent = () => {
                 </ol>
             </nav>
             <div className="grid gap-4 grid-col-1 sm:grid-cols-2 md:grid-cols-3 mt-2">
-                {STAFFS.map((item, key) => {
+                {sortStaffs.map((item, key) => {
                     return <SalaryCard item={item} key={key} />;
                 })}
             </div>
