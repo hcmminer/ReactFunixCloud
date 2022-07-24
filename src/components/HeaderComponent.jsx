@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import SearchBarComponent from "./SearchBarComponent";
 
-const HeaderComponent = ({ setScreen, setStaffs, setSortStaffs }) => {
+const HeaderComponent = ({ setScreen, setSearchStaffs, setSortStaffs }) => {
     const [sort, setSort] = useState("default");
+    const [currentSearchInput, setSearchCurrentInput] = useState("");
     const location = useLocation();
     const activeLink = location.pathname;
     let rightMenu;
@@ -43,7 +44,6 @@ const HeaderComponent = ({ setScreen, setStaffs, setSortStaffs }) => {
         rightMenu = (
             <div className="sm:col-span-2 hidden md:flex items-center justify-end">
                 <select
-                    id="ok"
                     onChange={(e) => {
                         setSortStaffs(e.target.value);
                         setSort(e.target.value);
@@ -52,7 +52,7 @@ const HeaderComponent = ({ setScreen, setStaffs, setSortStaffs }) => {
                     className="px-2 py-2 mr-2 rounded-md bg-black border-transparent focus:border-gray-500 text-white focus:ring-0 text-sm"
                 >
                     <option value="default">Sắp xếp</option>
-                    <option value="idInc">ID giảm dần</option>
+                    <option value="idDec">ID giảm dần</option>
                     <option value="salaryDec">Lương giảm dần</option>
                 </select>
                 <button
@@ -67,6 +67,19 @@ const HeaderComponent = ({ setScreen, setStaffs, setSortStaffs }) => {
             </div>
         );
     }
+    let rightHeader;
+    if (activeLink == "/staffs") {
+        rightHeader = (
+            <SearchBarComponent
+                currentSearchInput={currentSearchInput}
+                setSearchCurrentInput={(e) => setSearchCurrentInput(e)}
+                setSearchStaffs={(e) => setSearchStaffs(e)}
+            />
+        );
+    } else {
+        rightHeader = null;
+    }
+
     return (
         <div>
             <div className=" bg-gradient-to-tr from-green-700 to-lime-400 p-4 px-4  hover:bg-red-600">
@@ -74,9 +87,7 @@ const HeaderComponent = ({ setScreen, setStaffs, setSortStaffs }) => {
                     <h1 className="mx-auto md:mx-0 bg-gray-900 rounded-md border-2 text-white p-2 transform -skew-x-12 text-center text-xl">
                         Ứng dụng quản lý nhân sự v1.0
                     </h1>
-                    {activeLink == "/staffs" && (
-                        <SearchBarComponent setStaffs={(e) => setStaffs(e)} />
-                    )}
+                    {rightHeader}
                 </div>
                 <hr className="m-4 border-t-2"></hr>
                 <div className="m-1 mx-4 ">

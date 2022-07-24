@@ -1,12 +1,15 @@
 import { Link, useParams } from "react-router-dom";
-import { STAFFS } from "../staffs";
+// import { STAFFS } from "../staffs";
 import dateFormat from "dateformat";
 
-const CurrentStaffComponent = function () {
+const CurrentStaffComponent = function ({ staffs }) {
     const { staffId } = useParams();
-    const currentStaff = STAFFS.filter(
+    const currentStaff = staffs.filter(
         (item) => item.id === parseInt(staffId, 10)
     )[0];
+    console.log(staffs);
+    console.log(staffId);
+    console.log(currentStaff);
     if (currentStaff != null) {
         return (
             <>

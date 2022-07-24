@@ -16,12 +16,18 @@ export default function App() {
     const [staffs, setStaffs] = useState(STAFFS);
     const [sortStaffs, setSortStaffs] = useState(STAFFS);
     // search staffs
-    const changeStaffs = (e) => {
+    const setSearchStaffs = (e) => {
         setStaffs(
             STAFFS.filter((item) =>
                 item.name.toLowerCase().includes(e.toLowerCase())
             )
         );
+    };
+
+    // addNewStaff
+    const addNewStaff = (e) => {
+        staffs.push(e);
+        setStaffs(staffs);
     };
 
     // sort salaries by (id || salary total)
@@ -31,7 +37,7 @@ export default function App() {
     };
     const cloneSTAFFS = [...STAFFS];
     const sortBy = (e) => {
-        if (e == "idInc") {
+        if (e == "idDec") {
             setSortStaffs(cloneSTAFFS.sort((a, b) => b.id - a.id));
         } else if (e == "salaryDec") {
             setSortStaffs(
@@ -47,19 +53,23 @@ export default function App() {
             <HeaderComponent
                 screen={screen}
                 setScreen={(a) => setScreen({ ...screen, sm: a, md: a })}
-                setStaffs={(e) => changeStaffs(e)}
+                setSearchStaffs={(e) => setSearchStaffs(e)}
                 setSortStaffs={(e) => sortBy(e)}
             />
             <Routes>
                 <Route
                     path="staffs"
                     element={
-                        <StaffListComponent screen={screen} staffs={staffs} />
+                        <StaffListComponent
+                            screen={screen}
+                            staffs={staffs}
+                            setStaffs={(e) => addNewStaff(e)}
+                        />
                     }
                 ></Route>
                 <Route
                     path="staffs/:staffId"
-                    element={<CurrentStaffComponent />}
+                    element={<CurrentStaffComponent staffs={staffs} />}
                 ></Route>
                 <Route
                     path="departments"
