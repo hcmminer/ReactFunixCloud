@@ -12,10 +12,9 @@ export const staffsSlice = createSlice({
             state.push(action.payload);
         },
         setSearchedStaffs: (state, action) => {
-            let newstate = state.filter((item) =>
+            state.filter((item) =>
                 item.name.toLowerCase().includes(action.payload.toLowerCase())
             );
-            state = newstate;
         },
         setSortedStaffs: (state, action) => {
             console.log(action);
