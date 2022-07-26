@@ -1,9 +1,12 @@
 import React from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import NewStaff from "./NewStaff";
 
-const StaffListComponent = ({ screen, staffs, setStaffs }) => {
+const StaffListComponent = ({ screen }) => {
+    const staffs = useSelector((state) => state.staffs);
+    console.log(staffs);
     const [isNewStaffForm, setIsNewStaffForm] = useState("hidden");
     const resString = `grid gap-4 grid-cols-2 sm:grid-cols-${screen.sm} md:grid-cols-${screen.md}`;
     return (
@@ -68,11 +71,7 @@ const StaffListComponent = ({ screen, staffs, setStaffs }) => {
                 id="newstaff"
                 className={`${isNewStaffForm} absolute bg-gray-400 top-0 left-1/2 transform -translate-x-1/2`}
             >
-                <NewStaff
-                    staffs={staffs}
-                    setStaffs={(e) => setStaffs(e)}
-                    setIsNewStaffForm={(a) => setIsNewStaffForm(a)}
-                />
+                <NewStaff setIsNewStaffForm={(a) => setIsNewStaffForm(a)} />
             </div>
         </div>
     );

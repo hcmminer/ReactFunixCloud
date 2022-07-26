@@ -8,4 +8,9 @@ Cách chạy:
         cd ReactFunixCloud
         npm install
         npm run dev
+- Yêu cầu nâng cao
+    branch RJS101x_Assignment3_advance_bandvfx17188@funix.edu.vn
+    (do react18 từ chối redux-form, react-redux-form nên tôi đã sử dụng 
+REACT FINAL FORM
+)
 

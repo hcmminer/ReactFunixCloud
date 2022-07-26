@@ -29,7 +29,7 @@ export const ROLE = {
     NORMAL_STAFF: "Nhân viên",
     MANAGER_STAFF: "Quản lý",
 };
-export const STAFFS = [
+export var STAFFS = [
     {
         id: 0,
         name: "Nguyễn Văn A",

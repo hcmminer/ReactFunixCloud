@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 const SalaryCard = ({ item }) => {
     const formatterVn = new Intl.NumberFormat("VN", {
@@ -25,7 +26,8 @@ const SalaryCard = ({ item }) => {
         </div>
     );
 };
-const SalariesComponent = ({ sortStaffs }) => {
+const SalariesComponent = () => {
+    const staffs = useSelector((state) => state.staffs);
     return (
         <div className="mx-6">
             <nav className="bg-gray-100 px-5 py-3 text-lg">
@@ -45,7 +47,7 @@ const SalariesComponent = ({ sortStaffs }) => {
                 </ol>
             </nav>
             <div className="grid gap-4 grid-col-1 sm:grid-cols-2 md:grid-cols-3 mt-2">
-                {sortStaffs.map((item, key) => {
+                {staffs.map((item, key) => {
                     return <SalaryCard item={item} key={key} />;
                 })}
             </div>

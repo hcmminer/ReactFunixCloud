@@ -1,8 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import { DEPARTMENTS } from "../staffs";
+import { useSelector, useDispatch } from 'react-redux'
+import { addNewStaff } from '../features/staffsSlice'
 
-const NewStaff = ({ setIsNewStaffForm, setStaffs, staffs }) => {
+const NewStaff = ({ setIsNewStaffForm }) => {
+    const staffs = useSelector((state) => state.staffs)
+    const dispatch = useDispatch()
     const [newStaff, setNewStaff] = useState({
         id: "",
         name: "",
@@ -325,7 +329,8 @@ const NewStaff = ({ setIsNewStaffForm, setStaffs, staffs }) => {
                 <button
                     onClick={() => {
                         if (errors == false) {
-                            setStaffs(newStaff);
+                            dispatch(addNewStaff(newStaff));
+                            console.log(newStaff)
                             setIsNewStaffForm("hidden");
                         }
                     }}

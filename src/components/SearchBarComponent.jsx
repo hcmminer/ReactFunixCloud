@@ -1,32 +1,23 @@
 import React from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setSearchedStaffs } from "../features/staffsSlice";
 
-const SearchBarComponent = ({
-    setSearchStaffs,
-    currentSearchInput,
-    setSearchCurrentInput,
-}) => {
-    // use uncontrolled form
-    const input = React.createRef();
+const SearchBarComponent = ({ currentSearchInput, setSearchCurrentInput }) => {
+    const dispatch = useDispatch();
     return (
         <div className="hidden sm:flex">
             <form method="GET">
                 <div className="relative text-gray-600">
                     <input
                         type="search"
-                        name="q"
                         className="py-2 text-sm text-white bg-gray-900 rounded-md pl-10 focus:outline-none "
                         placeholder="Search..."
                         autoComplete="off"
                         onChange={(e) => {
-                            // search by controlled form and uncontrolled
-                            // setSearchStaffs(e.target.value);
-                            // setSearchStaffs(e.currentTarget.value);
-                            setSearchStaffs(input.current.value);
-                            setSearchCurrentInput(input.current.value);
-                            // setSearchCurrentInput(e.target.value);
+                            dispatch(setSearchedStaffs(e.target.value));
+                            setSearchCurrentInput(e.target.value);
                         }}
-                        ref={input}
                         value={currentSearchInput}
                         autoFocus
                     />

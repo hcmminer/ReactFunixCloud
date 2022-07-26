@@ -3,8 +3,11 @@ import logo from "../assets/images/logo.svg";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import SearchBarComponent from "./SearchBarComponent";
+import { useDispatch } from "react-redux";
+import { setSortedStaffs } from "../features/staffsSlice";
 
-const HeaderComponent = ({ setScreen, setSearchStaffs, setSortStaffs }) => {
+const HeaderComponent = ({ setScreen }) => {
+    const dispatch = useDispatch();
     const [sort, setSort] = useState("default");
     const [currentSearchInput, setSearchCurrentInput] = useState("");
     const location = useLocation();
@@ -45,7 +48,7 @@ const HeaderComponent = ({ setScreen, setSearchStaffs, setSortStaffs }) => {
             <div className="sm:col-span-2 hidden md:flex items-center justify-end">
                 <select
                     onChange={(e) => {
-                        setSortStaffs(e.target.value);
+                        dispatch(setSortedStaffs(e.target.value));
                         setSort(e.target.value);
                     }}
                     value={sort}
@@ -57,7 +60,7 @@ const HeaderComponent = ({ setScreen, setSearchStaffs, setSortStaffs }) => {
                 </select>
                 <button
                     onClick={() => {
-                        setSortStaffs("default");
+                        dispatch(setSortedStaffs("default"));
                         setSort("default");
                     }}
                     className="px-2 py-2 bg-black text-white text-sm font-medium rounded-md"
@@ -73,7 +76,6 @@ const HeaderComponent = ({ setScreen, setSearchStaffs, setSortStaffs }) => {
             <SearchBarComponent
                 currentSearchInput={currentSearchInput}
                 setSearchCurrentInput={(e) => setSearchCurrentInput(e)}
-                setSearchStaffs={(e) => setSearchStaffs(e)}
             />
         );
     } else {
