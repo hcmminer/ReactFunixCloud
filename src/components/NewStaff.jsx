@@ -26,7 +26,7 @@ const NewStaff = ({ setIsNewStaffForm, setStaffs, staffs }) => {
         image: "the default image is using",
     });
 
-    const [errors, setErrors] = useState(true)
+    const [errors, setErrors] = useState(true);
 
     return (
         <div className="border p-2 sm:p-4 md:p-6 relative">
@@ -64,8 +64,11 @@ const NewStaff = ({ setIsNewStaffForm, setStaffs, staffs }) => {
                             } else {
                                 setValidate({ ...validate, id: null });
                             }
-                            setErrors(false)
-                            setNewStaff({ ...newStaff, id: Number(e.target.value) });
+                            setErrors(false);
+                            setNewStaff({
+                                ...newStaff,
+                                id: Number(e.target.value),
+                            });
                         }}
                     />
                     <p className="mt-2 text-sm text-red-600 dark:text-green-500">
@@ -88,12 +91,12 @@ const NewStaff = ({ setIsNewStaffForm, setStaffs, staffs }) => {
                         onChange={(e) => {
                             e.target.value == ""
                                 ? setValidate({
-                                    ...validate,
-                                    name: "this field is required",
-                                })
+                                      ...validate,
+                                      name: "this field is required",
+                                  })
                                 : setValidate({ ...validate, name: null });
 
-                            setErrors(false)
+                            setErrors(false);
                             setNewStaff({ ...newStaff, name: e.target.value });
                         }}
                     />
@@ -112,11 +115,11 @@ const NewStaff = ({ setIsNewStaffForm, setStaffs, staffs }) => {
                         onChange={(e) => {
                             e.target.value == ""
                                 ? setValidate({
-                                    ...validate,
-                                    doB: "this field is required",
-                                })
+                                      ...validate,
+                                      doB: "this field is required",
+                                  })
                                 : setValidate({ ...validate, doB: null });
-                            setErrors(false)
+                            setErrors(false);
                             setNewStaff({ ...newStaff, doB: e.target.value });
                         }}
                         type="date"
@@ -144,7 +147,7 @@ const NewStaff = ({ setIsNewStaffForm, setStaffs, staffs }) => {
                             } else {
                                 setValidate({ ...validate, salaryScale: null });
                             }
-                            setErrors(false)
+                            setErrors(false);
                             setNewStaff({
                                 ...newStaff,
                                 salaryScale: e.target.value,
@@ -176,7 +179,7 @@ const NewStaff = ({ setIsNewStaffForm, setStaffs, staffs }) => {
                             } else {
                                 setValidate({ ...validate, startDate: null });
                             }
-                            setErrors(false)
+                            setErrors(false);
                             setNewStaff({
                                 ...newStaff,
                                 startDate: e.target.value,
@@ -207,17 +210,15 @@ const NewStaff = ({ setIsNewStaffForm, setStaffs, staffs }) => {
                             } else {
                                 setValidate({ ...validate, department: null });
                             }
-                            setErrors(false)
+                            setErrors(false);
                             setNewStaff({
                                 ...newStaff,
                                 department: e.target.value,
                             });
                         }}
-                        className="px-2 py-2 mr-2 rounded-md bg-black border-transparent focus:border-gray-500 text-white focus:ring-0 text-sm"
+                        className="bg-green-50 border border-green-500 text-green-900 placeholder-green-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-100 dark:border-green-400"
                     >
-                        <option value=''>
-                            Phòng ban
-                        </option>
+                        <option value="">Phòng ban</option>
                         {DEPARTMENTS.map((item, key) => (
                             <option key={key} value={item.name}>
                                 {item.name}
@@ -245,7 +246,7 @@ const NewStaff = ({ setIsNewStaffForm, setStaffs, staffs }) => {
                             } else {
                                 setValidate({ ...validate, annualLeave: null });
                             }
-                            setErrors(false)
+                            setErrors(false);
                             setNewStaff({
                                 ...newStaff,
                                 annualLeave: e.target.value,
@@ -276,7 +277,7 @@ const NewStaff = ({ setIsNewStaffForm, setStaffs, staffs }) => {
                             } else {
                                 setValidate({ ...validate, overTime: null });
                             }
-                            setErrors(false)
+                            setErrors(false);
                             setNewStaff({
                                 ...newStaff,
                                 overTime: e.target.value,
@@ -312,6 +313,7 @@ const NewStaff = ({ setIsNewStaffForm, setStaffs, staffs }) => {
                                 image: e.target.value,
                             });
                         }}
+                        disabled
                         type="file"
                         id="username-success"
                         className="bg-green-50 border border-green-500 text-green-900 placeholder-green-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-100 dark:border-green-400"
