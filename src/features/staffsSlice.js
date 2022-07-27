@@ -6,24 +6,31 @@ const calSalary = (item) => {
 };
 export const staffsSlice = createSlice({
     name: "staffs",
-    initialState: STAFFS,
+    initialState: { value: STAFFS },
     reducers: {
         addNewStaff: (state, action) => {
-            state.push(action.payload);
+            state.value.push(action.payload);
         },
         setSearchedStaffs: (state, action) => {
-            state.filter((item) =>
-                item.name.toLowerCase().includes(action.payload.toLowerCase())
-            );
+            if (action.payload == "") {
+                state.value = STAFFS;
+            } else {
+                const newState = state.value.filter((item) =>
+                    item.name
+                        .toLowerCase()
+                        .includes(action.payload.toLowerCase())
+                );
+                state.value = newState;
+            }
         },
         setSortedStaffs: (state, action) => {
             console.log(action);
             if (action.payload == "idDec") {
-                state.sort((a, b) => b.id - a.id);
+                state.value.sort((a, b) => b.id - a.id);
             } else if (action.payload == "salaryDec") {
-                state.sort((a, b) => calSalary(b) - calSalary(a));
+                state.value.sort((a, b) => calSalary(b) - calSalary(a));
             } else if (action.payload == "default") {
-                state.sort((a, b) => -b.id + a.id);
+                state.value.sort((a, b) => -b.id + a.id);
             }
         },
     },

@@ -1,15 +1,14 @@
 import { Link, useParams } from "react-router-dom";
 // import { STAFFS } from "../staffs";
 import dateFormat from "dateformat";
+import { useSelector } from "react-redux";
 
-const CurrentStaffComponent = function ({ staffs }) {
+const CurrentStaffComponent = function () {
+    const staffs = useSelector((state) => state.staffs.value);
     const { staffId } = useParams();
     const currentStaff = staffs.filter(
         (item) => item.id === parseInt(staffId, 10)
     )[0];
-    console.log(staffs);
-    console.log(staffId);
-    console.log(currentStaff);
     if (currentStaff != null) {
         return (
             <>

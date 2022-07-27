@@ -1,344 +1,298 @@
 import React from "react";
 import { useState } from "react";
 import { DEPARTMENTS } from "../staffs";
-import { useSelector, useDispatch } from 'react-redux'
-import { addNewStaff } from '../features/staffsSlice'
+import { useSelector, useDispatch } from "react-redux";
+import { addNewStaff } from "../features/staffsSlice";
+import { Field, Form, withFormik } from "formik";
+import * as Yup from "yup";
 
 const NewStaff = ({ setIsNewStaffForm }) => {
-    const staffs = useSelector((state) => state.staffs)
-    const dispatch = useDispatch()
-    const [newStaff, setNewStaff] = useState({
-        id: "",
-        name: "",
-        doB: "",
-        salaryScale: "",
-        startDate: "",
-        department: "",
-        annualLeave: "",
-        overTime: "",
-        image: "/assets/images/alberto.png",
-    });
-    const [validate, setValidate] = useState({
-        id: "this field is required",
-        name: "this field is required",
-        doB: "this field is required",
-        salaryScale: "this field is required",
-        startDate: "this field is required",
-        department: "this field is required",
-        annualLeave: "this field is required",
-        overTime: "this field is required",
-        image: "the default image is using",
-    });
+    const staffs = useSelector((state) => state.staffs.value);
+    const dispatch = useDispatch();
 
-    const [errors, setErrors] = useState(true)
+    const NewStaffForm = (props) => {
+        const { values, errors, touched, handleChange, isSubmitting } = props;
+
+        return (
+            <div>
+                <Form>
+                    <div className="grid sm:grid-cols-2 gap-2">
+                        <div>
+                            <div className="">
+                                <label className="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">
+                                    ID:
+                                </label>
+                                {touched.id && errors.id && (
+                                    <p className="text-red-500">{errors.id}</p>
+                                )}
+                                <Field
+                                    className="bg-green-50 border border-green-500 text-green-900 placeholder-green-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-100 "
+                                    type="number"
+                                    name="id"
+                                    placeholder="id"
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <div className="">
+                                <label className="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">
+                                    Name:
+                                </label>
+                                {touched.name && errors.name && (
+                                    <p className="text-red-500">
+                                        {errors.name}
+                                    </p>
+                                )}
+                                <Field
+                                    className="bg-green-50 border border-green-500 text-green-900 placeholder-green-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-100 "
+                                    type="string"
+                                    name="name"
+                                    placeholder="name"
+                                />
+                            </div>
+                        </div>
+
+                        <div>
+                            <div className="">
+                                <label className="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">
+                                    Date of birth:
+                                </label>
+                                {touched.doB && errors.doB && (
+                                    <p className="text-red-500">{errors.doB}</p>
+                                )}
+                                <Field
+                                    className="bg-green-50 border border-green-500 text-green-900 placeholder-green-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-100 "
+                                    type="date"
+                                    name="doB"
+                                    placeholder="date of birth"
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <div className="">
+                                <label className="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">
+                                    Salary scale:
+                                </label>
+                                {touched.salaryScale && errors.salaryScale && (
+                                    <p className="text-red-500">
+                                        {errors.salaryScale}
+                                    </p>
+                                )}
+                                <Field
+                                    className="bg-green-50 border border-green-500 text-green-900 placeholder-green-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-100 "
+                                    type="number"
+                                    name="salaryScale"
+                                    placeholder="salary scale"
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <div className="">
+                                <label className="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">
+                                    Start date:
+                                </label>
+                                {touched.doB && errors.doB && (
+                                    <p className="text-red-500">{errors.doB}</p>
+                                )}
+                                <Field
+                                    className="bg-green-50 border border-green-500 text-green-900 placeholder-green-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-100 "
+                                    type="date"
+                                    name="startDate"
+                                    placeholder="date of birth"
+                                />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label className="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">
+                                Department:
+                            </label>
+                            {touched.department && errors.department && (
+                                <p className="text-red-500">
+                                    {errors.department}
+                                </p>
+                            )}
+                            <div className="">
+                                <Field
+                                    component="select"
+                                    name="department"
+                                    className="bg-green-50 border border-green-500 text-green-900 placeholder-green-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-100"
+                                >
+                                    <option value="">Department</option>
+                                    {DEPARTMENTS.map((item, key) => {
+                                        return (
+                                            <option key={key} value={item.name}>
+                                                {item.name}
+                                            </option>
+                                        );
+                                    })}
+                                </Field>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div className="">
+                                <label className="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">
+                                    AnnuallLeave:
+                                </label>
+                                {touched.annualLeave && errors.annualLeave && (
+                                    <p className="text-red-500">
+                                        {errors.annualLeave}
+                                    </p>
+                                )}
+                                <Field
+                                    className="bg-green-50 border border-green-500 text-green-900 placeholder-green-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-100 "
+                                    type="number"
+                                    name="annualLeave"
+                                    placeholder="annual leave"
+                                />
+                            </div>
+                        </div>
+
+                        <div>
+                            <div className="">
+                                <label className="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">
+                                    Over Time:
+                                </label>
+                                {touched.overTime && errors.overTime && (
+                                    <p className="text-red-500">
+                                        {errors.overTime}
+                                    </p>
+                                )}
+                                <Field
+                                    className="bg-green-50 border border-green-500 text-green-900 placeholder-green-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-100 "
+                                    type="number"
+                                    name="overTime"
+                                    placeholder="Over Time"
+                                />
+                            </div>
+                        </div>
+
+                        <div>
+                            <div className="">
+                                <label className="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">
+                                    Image:
+                                </label>
+                                {touched.image && errors.image && (
+                                    <p className="text-red-500">
+                                        {errors.image}
+                                    </p>
+                                )}
+                                <Field
+                                    className="bg-green-50 border border-green-500 text-green-900 placeholder-green-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-100 "
+                                    type="file"
+                                    name="image"
+                                    placeholder="image"
+                                    disabled
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button
+                            type="submit"
+                            className="p-2 mt-4 border rounded-md bg-green-600"
+                            disabled={isSubmitting}
+                        >
+                            Submit
+                        </button>
+                    </div>
+                    {/* <DisplayFormikState {...props} /> */}
+                </Form>
+            </div>
+        );
+    };
+    // show all state in form
+    // const DisplayFormikState = (props) => (
+    //     <div
+    //         style={{
+    //             margin: "1rem 0",
+    //             background: "#f6f8fa",
+    //             padding: ".5rem",
+    //         }}
+    //     >
+    //         <strong>Injected Formik props (the form's state)</strong>
+    //         <div>
+    //             <code>errors:</code> {JSON.stringify(props.errors, null, 2)}
+    //         </div>
+    //         <div>
+    //             <code>values:</code> {JSON.stringify(props.values, null, 2)}
+    //         </div>
+    //         <div>
+    //             <code>isSubmitting:</code>{" "}
+    //             {JSON.stringify(props.isSubmitting, null, 2)}
+    //         </div>
+    //     </div>
+    // );
+
+    // bind fomrmik
+    const FormikApp = withFormik({
+        mapPropsToValues({
+            id,
+            name,
+            doB,
+            salaryScale,
+            startDate,
+            department,
+            annualLeave,
+            overTime,
+            image,
+        }) {
+            return {
+                id: id || "",
+                name: name || "",
+                doB: doB || "",
+                salaryScale: salaryScale || "",
+                startDate: startDate || "",
+                department: department || "",
+                annualLeave: annualLeave || "",
+                overTime: overTime || "",
+                image: image || "",
+            };
+        },
+        validationSchema: Yup.object().shape({
+            id: Yup.number().required("Id is required"),
+            name: Yup.string().required("Name is required"),
+            doB: Yup.date().required("DOB is required"),
+            salaryScale: Yup.number().required("Salary Scale is required!"),
+            startDate: Yup.date().required("Start Date is required"),
+            department: Yup.string().required("Department is required"),
+            annualLeave: Yup.number().required("Annual Leave is required"),
+            overTime: Yup.number().required("Over Time is required"),
+        }),
+        handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
+            setTimeout(() => {
+                if (Boolean(staffs.find((item) => item.id == values.id))) {
+                    setErrors({ id: "That ID is already taken" });
+                } else {
+                    dispatch(
+                        addNewStaff({
+                            ...values,
+                            image: "/assets/images/alberto.png",
+                        })
+                    );
+                    resetForm();
+                }
+                setSubmitting(false);
+            }, 2000);
+        },
+    })(NewStaffForm);
 
     return (
-        <div className="border p-2 sm:p-4 md:p-6 relative">
-            <span className="block mb-2 -mt-5 -ml-4 text-sm font-medium text-blue-700">
-                Thêm mới nhân viên:
-            </span>
-            <span
-                onClick={() => setIsNewStaffForm("hidden")}
-                className="absolute px-2 cursor-pointer top-0 right-0 border-2 bg-black text-white"
-            >
-                X
-            </span>
-            <div className="grid sm:grid-cols-2 gap-2">
-                <div className="">
-                    <label
-                        htmlFor="username-success"
-                        className="block mb-2 text-sm font-medium text-green-700 dark:text-green-500"
-                    >
-                        ID
-                    </label>
-                    <input
-                        type="number"
-                        id=""
-                        className="bg-green-50 border border-green-500 text-green-900 placeholder-green-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-100 "
-                        placeholder="ID"
-                        onChange={(e) => {
-                            let checkUniquie = staffs.find(
-                                (item) => item.id == e.target.value
-                            );
-                            if (Boolean(checkUniquie)) {
-                                setValidate({
-                                    ...validate,
-                                    id: "id must be uniquie",
-                                });
-                            } else {
-                                setValidate({ ...validate, id: null });
-                            }
-                            setErrors(false)
-                            setNewStaff({ ...newStaff, id: Number(e.target.value) });
-                        }}
-                    />
-                    <p className="mt-2 text-sm text-red-600 dark:text-green-500">
-                        {validate.id}
-                    </p>
-                </div>
-
-                <div>
-                    <label
-                        htmlFor="username-success"
-                        className="block mb-2 text-sm font-medium text-green-700 dark:text-green-500"
-                    >
-                        Họ và tên:
-                    </label>
-                    <input
-                        type="text"
-                        id=""
-                        className="bg-green-50 border border-green-500 text-green-900 placeholder-green-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-100 dark:border-green-400"
-                        placeholder="Họ và tên"
-                        onChange={(e) => {
-                            e.target.value == ""
-                                ? setValidate({
-                                    ...validate,
-                                    name: "this field is required",
-                                })
-                                : setValidate({ ...validate, name: null });
-
-                            setErrors(false)
-                            setNewStaff({ ...newStaff, name: e.target.value });
-                        }}
-                    />
-                    <p className="mt-2 text-sm text-red-600 dark:text-green-500">
-                        {validate.name}
-                    </p>
-                </div>
-                <div>
-                    <label
-                        htmlFor="username-success"
-                        className="block mb-2 text-sm font-medium text-green-700 dark:text-green-500"
-                    >
-                        Ngày sinh:
-                    </label>
-                    <input
-                        onChange={(e) => {
-                            e.target.value == ""
-                                ? setValidate({
-                                    ...validate,
-                                    doB: "this field is required",
-                                })
-                                : setValidate({ ...validate, doB: null });
-                            setErrors(false)
-                            setNewStaff({ ...newStaff, doB: e.target.value });
-                        }}
-                        type="date"
-                        id="username-success"
-                        className="bg-green-50 border border-green-500 text-green-900 placeholder-green-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-100 dark:border-green-400"
-                    />
-                    <p className="mt-2 text-sm text-red-600 dark:text-green-500">
-                        {validate.doB}
-                    </p>
-                </div>
-                <div>
-                    <label
-                        htmlFor="username-success"
-                        className="block mb-2 text-sm font-medium text-green-700 dark:text-green-500"
-                    >
-                        Bậc lương:
-                    </label>
-                    <input
-                        onChange={(e) => {
-                            if (e.target.value == "") {
-                                setValidate({
-                                    ...validate,
-                                    salaryScale: "salary scale is required",
-                                });
-                            } else {
-                                setValidate({ ...validate, salaryScale: null });
-                            }
-                            setErrors(false)
-                            setNewStaff({
-                                ...newStaff,
-                                salaryScale: e.target.value,
-                            });
-                        }}
-                        type="number"
-                        id="username-success"
-                        className="bg-green-50 border border-green-500 text-green-900 placeholder-green-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-100 dark:border-green-400"
-                    />
-                    <p className="mt-2 text-sm text-red-600 dark:text-green-500">
-                        {validate.salaryScale}
-                    </p>
-                </div>
-
-                <div>
-                    <label
-                        htmlFor="username-success"
-                        className="block mb-2 text-sm font-medium text-green-700 dark:text-green-500"
-                    >
-                        Ngày vào công ty:
-                    </label>
-                    <input
-                        onChange={(e) => {
-                            if (e.target.value == "") {
-                                setValidate({
-                                    ...validate,
-                                    startDate: "start date is required",
-                                });
-                            } else {
-                                setValidate({ ...validate, startDate: null });
-                            }
-                            setErrors(false)
-                            setNewStaff({
-                                ...newStaff,
-                                startDate: e.target.value,
-                            });
-                        }}
-                        type="date"
-                        id="username-success"
-                        className="bg-green-50 border border-green-500 text-green-900 placeholder-green-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-100 dark:border-green-400"
-                    />
-                    <p className="mt-2 text-sm text-red-600 dark:text-green-500">
-                        {validate.startDate}
-                    </p>
-                </div>
-                <div>
-                    <label
-                        htmlFor="username-success"
-                        className="block mb-2 text-sm font-medium text-green-700 dark:text-green-500"
-                    >
-                        Phòng ban:
-                    </label>
-                    <select
-                        onChange={(e) => {
-                            if (e.target.value == "") {
-                                setValidate({
-                                    ...validate,
-                                    department: "department  is required",
-                                });
-                            } else {
-                                setValidate({ ...validate, department: null });
-                            }
-                            setErrors(false)
-                            setNewStaff({
-                                ...newStaff,
-                                department: e.target.value,
-                            });
-                        }}
-                        className="px-2 py-2 mr-2 rounded-md bg-black border-transparent focus:border-gray-500 text-white focus:ring-0 text-sm"
-                    >
-                        <option value=''>
-                            Phòng ban
-                        </option>
-                        {DEPARTMENTS.map((item, key) => (
-                            <option key={key} value={item.name}>
-                                {item.name}
-                            </option>
-                        ))}
-                    </select>
-                    <p className="mt-2 text-sm text-red-600 dark:text-green-500">
-                        {validate.department}
-                    </p>
-                </div>
-                <div>
-                    <label
-                        htmlFor="username-success"
-                        className="block mb-2 text-sm font-medium text-green-700 dark:text-green-500"
-                    >
-                        Số ngày nghỉ phép còn lại:
-                    </label>
-                    <input
-                        onChange={(e) => {
-                            if (e.target.value == "") {
-                                setValidate({
-                                    ...validate,
-                                    annualLeave: "annual leave  is required",
-                                });
-                            } else {
-                                setValidate({ ...validate, annualLeave: null });
-                            }
-                            setErrors(false)
-                            setNewStaff({
-                                ...newStaff,
-                                annualLeave: e.target.value,
-                            });
-                        }}
-                        type="number"
-                        id="username-success"
-                        className="bg-green-50 border border-green-500 text-green-900 placeholder-green-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-100 dark:border-green-400"
-                    />
-                    <p className="mt-2 text-sm text-red-600 dark:text-green-500">
-                        {validate.annualLeave}
-                    </p>
-                </div>
-                <div>
-                    <label
-                        htmlFor="username-success"
-                        className="block mb-2 text-sm font-medium text-green-700 dark:text-green-500"
-                    >
-                        Số ngày tăng ca:
-                    </label>
-                    <input
-                        onChange={(e) => {
-                            if (e.target.value == "") {
-                                setValidate({
-                                    ...validate,
-                                    overTime: "over time  is required",
-                                });
-                            } else {
-                                setValidate({ ...validate, overTime: null });
-                            }
-                            setErrors(false)
-                            setNewStaff({
-                                ...newStaff,
-                                overTime: e.target.value,
-                            });
-                        }}
-                        type="number"
-                        id="username-success"
-                        className="bg-green-50 border border-green-500 text-green-900 placeholder-green-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-100 dark:border-green-400"
-                    />
-                    <p className="mt-2 text-sm text-red-600 dark:text-green-500">
-                        {validate.overTime}
-                    </p>
-                </div>
-                <div>
-                    <label
-                        htmlFor="username-success"
-                        className="block mb-2 text-sm font-medium text-green-700 dark:text-green-500"
-                    >
-                        Ảnh đại diện:
-                    </label>
-                    <input
-                        onChange={(e) => {
-                            if (e.target.value == "") {
-                                setValidate({
-                                    ...validate,
-                                    image: "image is required",
-                                });
-                            } else {
-                                setValidate({ ...validate, image: null });
-                            }
-                            setNewStaff({
-                                ...newStaff,
-                                image: e.target.value,
-                            });
-                        }}
-                        type="file"
-                        id="username-success"
-                        className="bg-green-50 border border-green-500 text-green-900 placeholder-green-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-100 dark:border-green-400"
-                    />
-                    <p className="mt-2 text-sm text-red-600 dark:text-green-500">
-                        {validate.image}
-                    </p>
-                </div>
-            </div>
-            <div>
-                <button
-                    onClick={() => {
-                        if (errors == false) {
-                            dispatch(addNewStaff(newStaff));
-                            console.log(newStaff)
-                            setIsNewStaffForm("hidden");
-                        }
-                    }}
-                    className="p-2 mt-4 border rounded-md bg-green-600"
-                    type="submit"
+        <div>
+            <div className="border p-2 sm:p-4 md:p-6 relative">
+                <span className="block mb-2 -mt-5 -ml-4 text-sm font-medium text-blue-700">
+                    Thêm mới nhân viên:
+                </span>
+                <span
+                    onClick={() => setIsNewStaffForm("hidden")}
+                    className="absolute px-2 cursor-pointer top-0 right-0 border-2 bg-black text-white"
                 >
-                    Submit
-                </button>
+                    X
+                </span>
+                <div>
+                    <FormikApp />
+                </div>
             </div>
         </div>
     );

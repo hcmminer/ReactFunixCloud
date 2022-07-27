@@ -27,7 +27,7 @@ const SalaryCard = ({ item }) => {
     );
 };
 const SalariesComponent = () => {
-    const staffs = useSelector((state) => state.staffs);
+    const staffs = useSelector((state) => state.staffs.value);
     return (
         <div className="mx-6">
             <nav className="bg-gray-100 px-5 py-3 text-lg">

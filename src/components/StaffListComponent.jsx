@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 import NewStaff from "./NewStaff";
 
 const StaffListComponent = ({ screen }) => {
-    const staffs = useSelector((state) => state.staffs);
-    console.log(staffs);
+    const staffs = useSelector((state) => state.staffs.value);
     const [isNewStaffForm, setIsNewStaffForm] = useState("hidden");
     const resString = `grid gap-4 grid-cols-2 sm:grid-cols-${screen.sm} md:grid-cols-${screen.md}`;
     return (
