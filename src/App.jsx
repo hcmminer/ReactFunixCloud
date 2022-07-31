@@ -6,7 +6,6 @@ import CurrentStaffComponent from "./components/CurrentStaffComponent";
 import DepartmentsComponent from "./components/DepartmentsComponent";
 import SalariesComponent from "./components/SalariesComponent";
 import "./App.css";
-import { useEffect } from "react";
 export default function App() {
     const [screen, setScreen] = useState({
         sm: 3,
