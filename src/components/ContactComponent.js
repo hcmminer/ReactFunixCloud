@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-    Breadcrumb,
-    BreadcrumbItem,
-    Button,
-    Row,
-    Col,
-    Label,
-} from "reactstrap";
+import { Button, Row, Col, Label } from "reactstrap";
 import { Control, Form, Errors } from "react-redux-form";
 
 const required = (val) => val && val.length;
@@ -19,7 +12,6 @@ const validEmail = (val) =>
 class Contact extends Component {
     constructor(props) {
         super(props);
-
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -37,7 +29,6 @@ class Contact extends Component {
             values.message
         );
         this.props.resetFeedBackForm();
-        // event.preventDefault();
     }
 
     render() {

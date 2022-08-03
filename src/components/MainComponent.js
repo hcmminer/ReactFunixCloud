@@ -39,7 +39,6 @@ const mapDispatchToProps = (dispatch) => ({
     fetchComments: () => dispatch(fetchComments()),
     fetchPromos: () => dispatch(fetchPromos()),
     fetchLeaders: () => dispatch(fetchLeaders()),
-
     postComment: (dishId, rating, author, comment) =>
         dispatch(postComment(dishId, rating, author, comment)),
     postFeedback: (
@@ -176,7 +175,6 @@ class Main extends Component {
                                     path="/contactus"
                                     component={ContactPage}
                                 />
-                                } />
                                 <Redirect to="/home" />
                             </Switch>
                         </CSSTransition>
