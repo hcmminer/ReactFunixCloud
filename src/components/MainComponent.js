@@ -42,7 +42,6 @@ const mapDispatchToProps = dispatch => ({
 class Main extends Component {
 
   componentDidMount(){
-    // 请求数据
     this.props.fetchDishes();
     this.props.fetchComments();
     this.props.fetchPromos();

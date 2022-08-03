@@ -37,7 +37,6 @@ export const postComment = (dishId, rating, author, comment) => (dispatch) => {
     .catch(error =>  { console.log('post comments', error.message); alert('Your comment could not be posted\nError: '+error.message); });
 };
 
-// 菜谱相关
 export const fetchDishes = () => (dispatch) => {
     dispatch(dishesLoading(true));
 
@@ -78,7 +77,6 @@ export const addDishes = (dishes) => ({
 });
 
 
-// 评论
 export const fetchComments = () => (dispatch) => {    
     return fetch(baseUrl + 'comments')
     .then(response => {
