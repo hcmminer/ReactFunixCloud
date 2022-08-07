@@ -5,7 +5,7 @@ github:
     branch RJS101x_Assignment4_bandvfx17188@funix.edu.vn
 
 - Yêu cầu nâng cao: Nhánh 2:
-    branch RJS101x_Assignment4_advance_bandvfx17188@funix.edu.vn
+    branch RJS101x_Assignment3_advance_bandvfx17188@funix.edu.vn
     
 Cách chạy:
      nhánh1:   git clone -b RJS101x_Assignment4_bandvfx17188@funix.edu.vn https://github.com/hcmminer/ReactFunixCloud
